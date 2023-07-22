@@ -1,0 +1,169 @@
+{% extends 'homes/root.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container bg-dark">
+
+    <div   class="addJop" >
+        <h3 class="text-warning text-center ms-4">Post the Jop</h3>
+        <button style="border-radius: 0%;" onclick="close()" class="btn btn-danger close  ">X</button>  
+    
+        <div class="form-container" style="margin-left:10%;margin-top: 3%;">
+            
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="form-group col-lg-6 col-sm-12">
+                        <label class="form-label text-light">Position</label>
+                        <input type="text" class="form-control bg-light w-75" name="position" placeholder="Position" required>
+                    </div>
+                    <div class="form-group col-lg-6 col-sm-12">
+                        <label class="form-label text-light ms-5">Type</label>
+    
+                        <input type="text" style="color: white;" name="type" class="form-control bg-light  w-75"  placeholder="Type" required>
+                    </div>  
+                </div> <br/>
+    
+                <div class="row">
+                    <div class="form-group col-lg-6 col-sm-12">
+                        <label class="form-label text-light">Describtion</label>
+    
+                        <input type="text" class="form-control bg-light w-75" name="describtion" placeholder="Describtion" required>
+                    </div>
+                    <div class="form-group col-lg-6 col-sm-12">
+                        <label class="form-label text-light ms-5">location</label>
+    
+                        <input type="text" style="color: white;" class="form-control bg-light  w-75" name="location"  placeholder="location" required>
+                    </div>  
+                </div> <br/>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-sm-12">
+                        <label class="form-label text-light">responsibility</label>
+    
+                        <input type="text" class="form-control bg-light w-75" name="responsibility" placeholder="responsibility" required>
+                    </div>
+                    <div class="form-group col-lg-6 col-sm-12">
+                        <label class="form-label text-light ms-5">Basic Qualification</label>
+    
+                        <input type="text" style="color: white;" name="b_qualify" class="form-control bg-light   w-75"  placeholder="basic_qualification" required>
+                    </div>  
+                     
+                </div> <br/>
+    
+                <div class="row">
+                    <div class="form-group col-lg-6 col-sm-12">
+                        <label class="form-label text-light ">Preffered Qualification</label>
+        
+                        <input  type="text" style="color: white;" name="p_qualify" class="form-control bg-light w-75"  placeholder="preffered_qualification" required>
+                    </div>
+                </div>
+                
+                <br/>
+                <div class="d-flex">
+                    <button class="btn btn-warning w-25">Add Jop</button> 
+    
+                </div> <br/>
+                
+            </form>
+    
+    
+        </div>
+    
+    </div>
+
+    <div style="border-bottom: 3px solid grey;" class="company shadow pb-5">
+        <div class="d-flex">
+            <div class="company-logo">
+                <img class="img" src="{% static 'images/icons/img (9).png' %}" alt="no" srcset="">
+            </div>
+            <h2 class="ms-5 mt-4 text-warning"> {{company.name}}</h2>
+        </div>
+        <div style="margin-left: 11%;" class="company-info">
+            <div class="head">
+                <span class="" style="color: grey;">{{company.head}}</span>
+            </div>
+            <br />
+            <div class="details">
+                <span class="text-info">{{company.size}}+</span>
+                <span class="ms-5 text-light">{{company.type}}</span>
+            </div>
+            <br /><br />
+            <div class="about">
+                <h4 class="" style="color: grey;">
+                    {{company.about}}
+                </h4>
+            </div>
+            <br />
+            <div class="contact-info d-flex">
+                <a href="https://{{company.website}}" class="btn btn-outline-info w-25"> Official Website </a>
+                <a href="https://{{company.gmail}}" class="ms-5 btn btn-outline-warning w-25"> Gmail </a>
+
+            </div>
+        </div>
+    </div>
+    <br/>
+    <h5 class="text-info"> Posted Jops <span>( {{NoOfJops}} )</span> <button  onclick="showAddJop()" style="border-radius: 50%;" class="btn btn-success ms-5">+</button>  </h5>
+    <br/>
+    <div class="jops-list">
+        {% for jop in jop_lists %}
+            <div class="card mt-3 bg-dark" style="width:100%;box-shadow: 0px 0px 7px 1px grey;">
+                <h5 class="card-header text-warning">{{jop.position}}</h5>
+                <div class="card-body">
+                    <h6 style="font-size: 12px;color:gray;" class="card-title ">{{jop.post_date}}</h6>
+                    <h5 class="card-title text-light">{{jop.type}}</h5>
+                    <p class="card-text text-light">{{jop.location}}</p>
+                    <a href="/viewedapply/{{jop.id}}" class="btn btn-outline-success">Viewed Apply</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+    
+
+    
+</div>
+
+
+
+
+<script>
+        
+    const jopContainer = document.querySelector('.addJop')
+    const closeC = document.querySelector('.close')
+     
+    closeC.addEventListener('click' , ()=> {
+        jopContainer.style.display = 'none'
+    })
+    function showAddJop() {
+        jopContainer.style.display = 'inline'
+    }
+
+   
+</script>
+
+<style>
+.addJop {
+ 
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 80%;
+    height : 80%;
+    display: none;
+    z-index: 1;
+    position: absolute;
+    border: 3px solid grey;
+   
+
+}
+
+.addJop input {
+    border: none;
+}
+
+.close {
+  margin-left: 97.3%;
+  margin-top:-6.3%;
+}
+</style>
+
+{% endblock %}

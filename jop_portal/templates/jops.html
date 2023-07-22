@@ -1,0 +1,32 @@
+{% extends 'homes/root.html' %}
+{% load static %}
+{% block content %}
+
+{% for jop in jops %}
+<div style="color : white; overflow: hidden; margin-left : 20rem" class="col-lg-6 col-md-6 col-sm-12 ">
+    <div class="card shadow p-3 mb-5 rounded h-75" style='background-color : rgba(255 , 255 , 255 , 0.1);'>
+        <div class="card-body">
+            <div class="d-flex">
+                <img style="height: 30px;width:30px;" src="{% static 'images/icons/img (9).png' %}" alt="">
+                <h5 class="card-title" style="color : lightgrey;margin-left: 12px;">{{jop.companie.name}}
+                </h5>
+
+            </div>
+            <p class="card-text text-warning">{{jop.position}}</p>
+
+            <div class="d-flex">
+
+                <a href="/apply/{{jop.id}}" class="btn btn-outline-success">Apply Job</a>
+                <a style="margin-left: 10px;" href="#" class=" btn btn-outline-warning">Saved Job</a>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

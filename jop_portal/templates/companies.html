@@ -1,0 +1,22 @@
+{% extends 'homes/root.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="row">
+        <h3 class="text-warning">Companies</h3>
+        {% for company in companies %}
+        <div class="card  shadow p-3 mb-5 bg-dark rounded" style="width:20rem;">
+            <!-- <img src="{{company.logo}}" class="card-img-top" alt="..."> -->
+            <div class="card-body">
+                <h5 class="card-title text-warning">{{company.name}}</h5>
+                <div class="d-flex">
+                <p class="card-text text-light"> {{company.head}} </p>
+                <p class="card-text  ms-2" style="color: grey"> {{company.size}}+ </p>
+            </div>
+                <a href="https://{{company.website}}" class="btn btn-outline-warning">official Website</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

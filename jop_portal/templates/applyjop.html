@@ -1,0 +1,126 @@
+{% extends 'homes/root.html' %}
+
+{% load static %}
+{% block content %}
+
+    <div class="jop bg-dark">
+
+        <div class="company" style="color: white;">
+            <div class="card bg-dark">
+                <h3 class="text-warning ms-4">{{jop.position}}</h3>
+                <div class="d-flex">
+                    <h6 class="ms-4">{{jop.location}}</h6>
+                    <h6 class="ms-4">{{jop.type}}</h6>
+                    <h6 class="ms-4">{{jop.post_date}}</h6>
+
+                </div>
+                <h5 class="card-header ">
+                     <img style="height: 50px;" src="{% static 'images/icons/img (4).png' %}" alt=""> {{jop.companie.name}}
+                        <br><span class="ms-5 " style="color: gray;">{{jop.companie.size}}++</span>
+                        <span class="ms-2 " style="color: gray;">{{jop.companie.head}}</span>
+                        <span class="ms-2 " style="color: gray;">{{jop.companie.gmail}}</span>
+                    </h5>
+                
+                <div class="card-body ms-5" style="color: lightgray;">
+                    <h5 class="text-info">Description</h5> 
+                    <h5 class="ms-5">
+                       * {{jop.description}}
+                    </h5> <br>
+
+                    <h5 class="text-info">Responsibility</h5> 
+                    <h5 class="ms-5">
+                        * {{jop.responsibility}}
+                    </h5> <br>
+
+                    <h5 class="text-info">Basic Qualification</h5>
+                    <h5 class="ms-5">
+                        * {{jop.basic_qualification}}
+                    </h5> <br>
+
+                    <h5 class="text-info">Preffered Qualification</h5>
+                    <h5 class="ms-5">
+                        * {{jop.preffered_qualification}}
+                    </h5>
+                </div>
+            </div>
+            
+            <button type="button" class="btn btn-primary ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Apply Jop
+            </button>
+            <a href="/home/" class="btn btn-light " style="width: 10%;margin-left :5%;">  Back to Home </a>
+            
+            <br><br>
+            <h5 class="text-+light">Related Jops</h5>
+            <div class="row">
+            {% for jop in related %}
+            <div style="color : white ;" class="col-lg-3 col-md-3 col-sm-6 ">
+                <div class="card shadow p-3 mb-5 rounded " style='background-color : rgba(255 , 255 , 255 , 0.1);'>
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <img style="height: 30px;width:30px;" src="{% static 'images/icons/img (9).png' %}" alt="">
+                            <h5 class="card-title" style="color : lightgrey;margin-left: 12px;">{{jop.companie.name}}
+                            </h5>
+
+                        </div>
+                        <p class="card-text text-warning">{{jop.position}}</p>
+
+                        <div class="d-flex">
+                            <a href="/apply/{{jop.id}}" class="btn btn-outline-success">Apply Job</a>
+                            <a style="margin-left: 10px;" href="#" class=" btn btn-outline-warning">Saved Job</a>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+
+        </div>  
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark" id="exampleModalLabel">Apply Jop</h5>
+                        </div>
+                        <div class="modal-body">
+                        
+                                   <form action="/jopapply/" method="POST">
+                                        {% csrf_token %}
+                           
+                                       <div class="form-floating">
+                                           <input type="text" name = 'applyername'  class="form-control" id="floatingInput" placeholder="name@example.com">
+                                           <label for="floatingInput">Email address</label>
+                                       </div>
+                                       <div class="form-floating">
+                                           <input type="text" name="skills" class="form-control" id="floatingPassword" placeholder="Password">
+                                           <label for="floatingPassword">Password</label>
+                                       </div>
+                                       <div class="form-floating d-none">
+                                        <input type="text" value="{{jop.id}}" name="id" class="form-control" id="floatingPassword" placeholder="Password">
+                                        <label for="floatingPassword">Password</label>
+                                    </div>
+            
+                                       <button class="w-100 btn btn-lg btn-dark" type="submit">Apply</button>
+                                       
+                                   </form>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                               </div>
+                           
+                           
+                        
+                               
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

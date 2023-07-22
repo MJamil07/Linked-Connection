@@ -1,0 +1,80 @@
+{% extends 'homes/root.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container bg-dark">
+
+        <div style="border-bottom: 3px solid grey;" class="user shadow pb-5">
+        <div class="d-flex">
+            <div class="user-logo">
+                <img class="img" src="{% static 'images/icons/img (9).png' %}" alt="no" srcset="">
+            </div>
+            <h2 class="ms-5 mt-4 text-warning"> {{user.first_name }} , {{user.last_name}}</h2>
+        </div>
+        <div style="margin-left: 11%;" class="user-info">
+            <div class="head">
+                <span class="" style="color: grey;">{{user.qualification}}</span>
+            </div>
+            <br />
+            <div class="details">
+                <span class="text-info">{{user.college_name}}</span>
+            </div>
+            <br /><br />
+            
+            <br />
+            <div class="d-flex">
+                <h5 class = "text-light" style = "margin-left : 40px">  {{followings}} </h5>
+                <h5 class = "text-light" style = "margin-left : 100px">  {{followers}} </h5>
+            </div>
+            <div class="contact-info d-flex">
+                <h5 class = "text-info">  Followings </h5>
+                <h5 class = "text-info" style = "margin-left : 20px">  Followeres </h5>
+                <!-- <h5 href="https://{{company.gmail}}" class="ms-4 btn btn-outline-warning w-5"> Gmail </h5> -->
+
+            </div>
+
+            <div>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Post
+                </button>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Upload the Pic</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                               <form action="/posts/" method="POST" enctype = "multipart/form-data">
+                                {% csrf_token %}
+                                    <textarea name="description" id="" cols="30" rows="3">Write a Something..</textarea>
+                                    <input type="file" name="image" id="">
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                    
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <br/>
+   
+
+
+    
+
+    
+</div>
+
+
+{% endblock %}

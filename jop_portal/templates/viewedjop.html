@@ -1,0 +1,16 @@
+{% extends 'homes/root.html' %}
+{% block content %}
+
+    <h5 class="text-primary"> User Applied : <span class="text-light">{{count_the_jop}}</span>   </h5>
+    {% for user in jop_applyer %}
+        <div style="color: white;" class="card bg-dark shadow mt-2">
+            <div class="card-body">
+                <h5 class="card-title">{{user.name}}</h5>
+                <p class="card-text">{{user.skills}}</p>
+                <p class="card-text">{{user.user.qualification}}</p>
+
+                <a href="/user/{{user.user.id}}" class="btn btn-primary">Viewed Profile</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'homes/root.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="row">
+    <div class="col-lg-6 col-sm-12">
+        <div class="Categories bg-warning bg-dark">
+            <h2 class="text-light" style="color: grey;">Categories</h2> <br>
+            <div class="row p-2" style="margin-left: 0px;">
+                <div class="card icons bg-warning shadow m-2 col-lg-2 col-sm-6">
+                    <h5 class="card-header"> <img src="{% static 'images/icons/img (0).png' %}" alt=""></h5>
+                    
+                </div>
+
+                <div class="card icons bg-warning shadow m-2 col-lg-2 col-sm-6">
+                    <h5 class="card-header"> <img src="{% static 'images/icons/img (1).png' %}" alt=""></h5>
+                    
+                </div>
+
+                <div class="card icons bg-warning shadow m-2 col-lg-2 col-sm-6">
+                    <h5 class="card-header"> <img src="{% static 'images/icons/img (2).png' %}" alt=""></h5>
+                   
+                </div>
+
+                <div class="card icons bg-warning shadow m-2 col-lg-2 col-sm-6">
+                    <h5 class="card-header"> <img src="{% static 'images/icons/img (3).png' %}" alt=""></h5>
+                
+                </div>
+
+                <div class="card icons bg-warning shadow m-2 col-lg-2 col-sm-6">
+                    <h5 class="card-header"> <img src="{% static 'images/icons/img (4).png' %}" alt=""></h5>
+                   
+                </div>
+
+
+
+            </div>
+        </div>
+        <br />
+
+        <div class="row">
+            <h3 class="text-warning">Companies</h3>
+            {% for company in companies %}
+            <div class="card shadow p-3 mb-5 bg-dark rounded" style="width:20rem;">
+                <!-- <img src="{{company.logo}}" class="card-img-top" alt="..."> -->
+                <div class="card-body">
+                    <h5 class="card-title text-warning">{{company.name}}</h5>
+                    <div class="d-flex">
+                    <p class="card-text text-light"> {{company.head}} </p>
+                    <p class="card-text  ms-2" style="color: grey"> {{company.size}}+ </p>
+                </div>
+                    <a href="https://{{company.website}}" class="btn btn-outline-warning">official Website</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="row">
+            <h3 class="text-warning">Active Users</h3>
+            {% for user in Users %}
+            <div class="card shadow p-3 mb-5 bg-dark rounded" style="width:20rem;">
+                
+                <div class="card-body">
+                    <h5 class="card-title text-warning">{{user.first_name }} {{user.last_name}}</h5>
+                    <div class="d-flex">
+                    <p class="card-text text-light"> {{user.qualification}} </p>
+                </div>
+                    <a href = "/follow/{{user.id}}" class="btn btn-outline-success">Follow</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <br>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="row">
+            <h2 class="text-light" style="color: grey;">Recent Jobs</h2> <br /><br />
+            {% for jop in jops %}
+            <div style="color : white; overflow: hidden;" class="col-lg-6 col-md-6 col-sm-12 ">
+                <div class="card shadow p-3 mb-5 rounded h-75" style='background-color : rgba(255 , 255 , 255 , 0.1);'>
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <img style="height: 30px;width:30px;" src="{% static 'images/icons/img (9).png' %}" alt="">
+                            <h5 class="card-title" style="color : lightgrey;margin-left: 12px;">{{jop.companie.name}}
+                            </h5>
+
+                        </div>
+                        <p class="card-text text-warning">{{jop.position}}</p>
+
+                        <div class="d-flex">
+
+                            <a href="/apply/{{jop.id}}" class="btn btn-outline-success">Apply Job</a>
+                            <a style="margin-left: 10px;" href="#" class=" btn btn-outline-warning">Saved Job</a>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+            <div />
+        </div>
+        <br />
+    </div>
+
+
+
+    {% endblock %}
+<div/>    

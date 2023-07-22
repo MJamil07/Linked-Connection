@@ -1,0 +1,17 @@
+.Categories {
+    background-color:rgb(8, 56, 60);
+   
+}
+
+.Categories .row img {
+    height: 50px;
+    width: 50px;
+    
+}
+
+
+.Categories .row .icons:hover {
+    background-color: black;
+    cursor: pointer;
+}
+
